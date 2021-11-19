@@ -6,14 +6,18 @@ public class JobApplicationData {
 
     private int jobId;
     private String jobName;
+    private String companyName;
+    private String jobLink;
     private ZonedDateTime appliedDate;
     private boolean waitingResponse;
     private boolean gotInterview;
     private boolean rejected;
     private boolean receivedOffer;
 
-    public JobApplicationData(String jobName, ZonedDateTime appliedDate, boolean waitingResponse, boolean gotInterview, boolean rejected, boolean receivedOffer) {
+    public JobApplicationData(String jobName, String companyName, String jobLink, ZonedDateTime appliedDate, boolean waitingResponse, boolean gotInterview, boolean rejected, boolean receivedOffer) {
         this.jobName = jobName;
+        this.companyName = companyName;
+        this.jobLink = jobLink;
         this.appliedDate = appliedDate;
         this.waitingResponse = waitingResponse;
         this.gotInterview = gotInterview;
@@ -21,8 +25,15 @@ public class JobApplicationData {
         this.receivedOffer = receivedOffer;
     }
 
+    public JobApplicationData() {
+    }
+
     public int getJobId() {
         return jobId;
+    }
+
+    public void setJobId(int jobId) {
+        this.jobId = jobId;
     }
 
     public String getJobName() {
@@ -71,6 +82,22 @@ public class JobApplicationData {
 
     public void setReceivedOffer(boolean receivedOffer) {
         this.receivedOffer = receivedOffer;
+    }
+
+    public String getCompanyName() {
+        return companyName;
+    }
+
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
+    }
+
+    public String getJobLink() {
+        return jobLink;
+    }
+
+    public void setJobLink(String jobLink) {
+        this.jobLink = jobLink;
     }
 
     @Override

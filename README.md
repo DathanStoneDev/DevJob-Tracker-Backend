@@ -24,3 +24,10 @@ This application is a Minimal Viable Product (MVP). The features for this applic
 * IntelliJ Ultimate
 * Git
 * GitHub
+
+## Testing
+
+###Integration Testing
+
+* @DataJbdcTest: Testing the individual methods within the JobDataDAOImpl to ensure the SQL in those methods are persisting Data to the in-memory H2 database.
+* Postman: Testing the Controller endpoints to ensure @GetMapping, @PostMapping, @PutMapping and @DeleteMapping are performing correctly.

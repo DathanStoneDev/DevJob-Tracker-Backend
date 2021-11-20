@@ -1,0 +1,1 @@
+INSERT INTO job_data VALUES (4, 'Engineer', 'Company', 'www.link', current_date, 'Awaiting Offer');

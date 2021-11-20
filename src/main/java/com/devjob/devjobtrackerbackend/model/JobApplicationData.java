@@ -4,28 +4,42 @@ import java.time.ZonedDateTime;
 
 public class JobApplicationData {
 
+    public enum AppStatus {
+
+        AWAITING_RESPONSE ("Awaiting Offer"),
+        INTERVIEW("Landed Interview"),
+        REJECTION("Rejected"),
+        OFFER("Offer Extended");
+
+        private final String  status;
+
+        AppStatus(String status) {
+            this.status = status;
+        }
+
+        public String getStatus(){
+            return status;
+        }
+    }
+
     private int jobId;
     private String jobName;
     private String companyName;
     private String jobLink;
     private ZonedDateTime appliedDate;
-    private boolean waitingResponse;
-    private boolean gotInterview;
-    private boolean rejected;
-    private boolean receivedOffer;
+    private AppStatus appStatus;
 
-    public JobApplicationData(String jobName, String companyName, String jobLink, ZonedDateTime appliedDate, boolean waitingResponse, boolean gotInterview, boolean rejected, boolean receivedOffer) {
+
+    public JobApplicationData(String jobName, String companyName, String jobLink, ZonedDateTime appliedDate, AppStatus appStatus) {
         this.jobName = jobName;
         this.companyName = companyName;
         this.jobLink = jobLink;
         this.appliedDate = appliedDate;
-        this.waitingResponse = waitingResponse;
-        this.gotInterview = gotInterview;
-        this.rejected = rejected;
-        this.receivedOffer = receivedOffer;
+        this.appStatus = appStatus;
     }
 
     public JobApplicationData() {
+
     }
 
     public int getJobId() {
@@ -44,46 +58,6 @@ public class JobApplicationData {
         this.jobName = jobName;
     }
 
-    public ZonedDateTime getAppliedDate() {
-        return appliedDate;
-    }
-
-    public void setAppliedDate(ZonedDateTime appliedDate) {
-        this.appliedDate = appliedDate;
-    }
-
-    public boolean isWaitingResponse() {
-        return waitingResponse;
-    }
-
-    public void setWaitingResponse(boolean waitingResponse) {
-        this.waitingResponse = waitingResponse;
-    }
-
-    public boolean isGotInterview() {
-        return gotInterview;
-    }
-
-    public void setGotInterview(boolean gotInterview) {
-        this.gotInterview = gotInterview;
-    }
-
-    public boolean isRejected() {
-        return rejected;
-    }
-
-    public void setRejected(boolean rejected) {
-        this.rejected = rejected;
-    }
-
-    public boolean isReceivedOffer() {
-        return receivedOffer;
-    }
-
-    public void setReceivedOffer(boolean receivedOffer) {
-        this.receivedOffer = receivedOffer;
-    }
-
     public String getCompanyName() {
         return companyName;
     }
@@ -100,16 +74,19 @@ public class JobApplicationData {
         this.jobLink = jobLink;
     }
 
-    @Override
-    public String toString() {
-        return "JobApplicationData{" +
-                "jobId=" + jobId +
-                ", jobName='" + jobName + '\'' +
-                ", appliedDate=" + appliedDate +
-                ", waitingResponse=" + waitingResponse +
-                ", gotInterview=" + gotInterview +
-                ", rejected=" + rejected +
-                ", receivedOffer=" + receivedOffer +
-                '}';
+    public ZonedDateTime getAppliedDate() {
+        return appliedDate;
+    }
+
+    public void setAppliedDate(ZonedDateTime appliedDate) {
+        this.appliedDate = appliedDate;
+    }
+
+    public AppStatus getAppStatus() {
+        return appStatus;
+    }
+
+    public void setAppStatus(AppStatus appStatus) {
+        this.appStatus = appStatus;
     }
 }

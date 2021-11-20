@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.data.jdbc.DataJdbcTest;
 import org.springframework.jdbc.core.JdbcTemplate;
 import java.time.ZonedDateTime;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 @DataJdbcTest
@@ -21,17 +23,22 @@ class JobDataDAOImplTest {
     }
 
     @Test
-    void ShouldCreateJob() {
+    void shouldCreateJob() {
         JobApplicationData job = new JobApplicationData("Software Developer", "First Job Company",
-                "www.myfirstsoftwarejob.com", ZonedDateTime.now(), true, false,
-                false, false);
+                "www.myfirstsoftwarejob.com", ZonedDateTime.now(), JobApplicationData.AppStatus.OFFER);
         dao.create(job);
         assertEquals("Software Developer", job.getJobName());
         assertEquals("First Job Company", job.getCompanyName());
         assertEquals("www.myfirstsoftwarejob.com", job.getJobLink());
-        assertEquals(true, job.isWaitingResponse());
-        assertEquals(false, job.isGotInterview());
-        assertEquals(false, job.isRejected());
-        assertEquals(false, job.isReceivedOffer());
+        assertEquals("Offer Extended", job.getAppStatus().getStatus());
     }
+
+    @Test
+    void shouldUpdateJob () {
+        int id = 4;
+        JobApplicationData.AppStatus status = JobApplicationData.AppStatus.INTERVIEW;
+        dao.update(id, status);
+
+    }
+
 }

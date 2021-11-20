@@ -6,9 +6,6 @@ CREATE TABLE `job_data` (
                             `company_name` varchar(30) NOT NULL,
                             `job_link` varchar(50) NOT NULL,
                             `applied_date` date NOT NULL,
-                            `waiting_response` tinyint(1) NOT NULL DEFAULT '1',
-                            `got_interview` tinyint(1) NOT NULL DEFAULT '0',
-                            `rejected` tinyint(1) NOT NULL DEFAULT '0',
-                            `received_offer` tinyint(1) NOT NULL DEFAULT '0',
+                            `app_status` ENUM('Awaiting Offer', 'Landed Interview', 'Rejected', 'Offer Extended') NOT NULL,
                             PRIMARY KEY (`job_id`)
 );

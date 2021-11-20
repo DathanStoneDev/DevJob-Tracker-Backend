@@ -8,10 +8,12 @@ public interface JobDataDAO {
 
     List<JobApplicationData> list();
 
+    JobApplicationData getJob(int id);
+
     void create(JobApplicationData job);
 
     void update(int id, JobApplicationData.AppStatus status);
 
-    void delete (int jobId);
+    void delete (int id);
 
 }

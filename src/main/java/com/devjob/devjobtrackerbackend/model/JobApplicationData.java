@@ -11,7 +11,7 @@ public class JobApplicationData {
         REJECTION("Rejected"),
         OFFER("Offer Extended");
 
-        private final String  status;
+        private final String status;
 
         AppStatus(String status) {
             this.status = status;
@@ -88,5 +88,17 @@ public class JobApplicationData {
 
     public void setAppStatus(AppStatus appStatus) {
         this.appStatus = appStatus;
+    }
+
+    @Override
+    public String toString() {
+        return "JobApplicationData{" +
+                "jobId=" + jobId +
+                ", jobName='" + jobName + '\'' +
+                ", companyName='" + companyName + '\'' +
+                ", jobLink='" + jobLink + '\'' +
+                ", appliedDate=" + appliedDate +
+                ", appStatus=" + appStatus +
+                '}';
     }
 }

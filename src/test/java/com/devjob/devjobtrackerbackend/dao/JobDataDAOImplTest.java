@@ -30,7 +30,6 @@ class JobDataDAOImplTest {
         assertEquals("Software Developer", job.getJobName());
         assertEquals("First Job Company", job.getCompanyName());
         assertEquals("www.myfirstsoftwarejob.com", job.getJobLink());
-        assertEquals("Offer Extended", job.getAppStatus().getStatus());
     }
 
     @Test
@@ -38,7 +37,23 @@ class JobDataDAOImplTest {
         int id = 4;
         JobApplicationData.AppStatus status = JobApplicationData.AppStatus.INTERVIEW;
         dao.update(id, status);
+        System.out.println(dao.getJob(id).getAppStatus().toString());
 
     }
 
+    @Test
+    void delete() {
+
+        int id = 4;
+        dao.delete(id);
+    }
+
+    @Test
+    void getJob() {
+
+        int id = 4;
+        JobApplicationData job = dao.getJob(id);
+        System.out.println(job.toString());
+
+    }
 }

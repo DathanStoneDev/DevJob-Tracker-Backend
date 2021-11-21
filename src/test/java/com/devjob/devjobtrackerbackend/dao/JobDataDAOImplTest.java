@@ -42,18 +42,28 @@ class JobDataDAOImplTest {
     }
 
     @Test
-    void delete() {
+    void shouldDelete() {
 
         int id = 4;
         dao.delete(id);
     }
 
     @Test
-    void getJob() {
+    void shouldGetJob() {
 
         int id = 4;
         JobApplicationData job = dao.getJob(id);
         System.out.println(job.toString());
+
+    }
+
+    @Test
+    void shouldGetlist() {
+        List<JobApplicationData> jobList = dao.list();
+        for(JobApplicationData j : jobList) {
+            System.out.println(j.toString());
+        }
+        assertEquals(1, jobList.size());
 
     }
 }

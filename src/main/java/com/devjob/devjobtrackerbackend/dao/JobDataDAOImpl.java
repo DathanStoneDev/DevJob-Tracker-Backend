@@ -15,6 +15,7 @@ public class JobDataDAOImpl implements JobDataDAO {
     private final String UPDATE_JOB_STATEMENT = "UPDATE job_data SET app_status = ? WHERE job_id = ?";
     private final String GET_SINGLE_JOB = "SELECT * FROM job_data WHERE job_id = ?";
     private final String DELETE_A_JOB = "DELETE FROM job_data WHERE job_id = ?";
+    private final String GET_ALL_JOBS = "SELECT * FROM job_data";
 
     private JdbcTemplate jdbcTemplate;
 
@@ -24,7 +25,8 @@ public class JobDataDAOImpl implements JobDataDAO {
 
     @Override
     public List<JobApplicationData> list() {
-        return null;
+
+        return jdbcTemplate.query(GET_ALL_JOBS, new JobDataRowMapper());
     }
 
     @Override

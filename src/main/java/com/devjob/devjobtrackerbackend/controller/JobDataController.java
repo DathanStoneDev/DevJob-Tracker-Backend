@@ -1,8 +1,12 @@
 package com.devjob.devjobtrackerbackend.controller;
 
 import com.devjob.devjobtrackerbackend.dao.JobDataDAO;
+import com.devjob.devjobtrackerbackend.exception.MissingDataException;
 import com.devjob.devjobtrackerbackend.model.JobApplicationData;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,17 +24,27 @@ public class JobDataController {
         return jobDataDAO.list();
     }
 
+    @GetMapping("/jobs/{jobId}")
+    public ResponseEntity<JobApplicationData> getJob(@PathVariable ("jobId") int id) {
+        try {
+            JobApplicationData job = jobDataDAO.getJob(id);
+            return new ResponseEntity<>(job, HttpStatus.ACCEPTED);
+        } catch (EmptyResultDataAccessException e) {
+            throw new MissingDataException("No Data associated with that ID. Please check the ID.");
+        }
+    }
+
     @PostMapping("/jobs/add-job")
     public void addJob(@RequestBody JobApplicationData job) {
         jobDataDAO.create(job);
     }
 
-    @PutMapping("/job/update-status/{jobId}/{appStatus}")
-    public void updateJob(@PathVariable int jobId, @PathVariable JobApplicationData.AppStatus appStatus) {
-        jobDataDAO.update(jobId, appStatus);
+    @PutMapping("/jobs/update-status")
+    public void updateJob(@RequestBody JobApplicationData job) {
+        jobDataDAO.update(job);
     }
 
-    @DeleteMapping("/job/delete/{jobId}")
+    @DeleteMapping("/jobs/delete/{jobId}")
     public void deleteJob(@PathVariable int jobId) {
         jobDataDAO.delete(jobId);
     }

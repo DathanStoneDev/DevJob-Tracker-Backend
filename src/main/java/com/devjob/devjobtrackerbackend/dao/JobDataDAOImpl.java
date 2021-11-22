@@ -25,7 +25,6 @@ public class JobDataDAOImpl implements JobDataDAO {
 
     @Override
     public List<JobApplicationData> list() {
-
         return jdbcTemplate.query(GET_ALL_JOBS, new JobDataRowMapper());
     }
 
@@ -44,12 +43,8 @@ public class JobDataDAOImpl implements JobDataDAO {
     }
 
     @Override
-    public void update(int id, JobApplicationData.AppStatus status) {
-
-        int result = jdbcTemplate.update(UPDATE_JOB_STATEMENT, status.toString(), id);
-        if(result > 0) {
-            System.out.println("job with the id: " + id + " has been updated with the status of: " + status);
-        }
+    public void update(JobApplicationData job) {
+        jdbcTemplate.update(UPDATE_JOB_STATEMENT, job.getAppStatus().toString(), job.getJobId());
     }
 
     @Override

@@ -4,9 +4,10 @@ import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.ZoneId;
 
 public class JobDataRowMapper implements RowMapper<JobApplicationData> {
+
+    //make variables for column names
 
 
     @Override
@@ -16,7 +17,7 @@ public class JobDataRowMapper implements RowMapper<JobApplicationData> {
         job.setJobName(rs.getString("job_name"));
         job.setCompanyName(rs.getString("company_name"));
         job.setJobLink(rs.getString("job_link"));
-        job.setAppliedDate(rs.getDate("applied_date").toLocalDate().atStartOfDay(ZoneId.systemDefault()));
+        job.setAppliedDate(rs.getTimestamp("applied_date").toLocalDateTime());
         job.setAppStatus(JobApplicationData.AppStatus.valueOf(rs.getString("app_status")));
 
         return job;

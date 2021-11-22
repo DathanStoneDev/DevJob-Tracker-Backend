@@ -1,6 +1,7 @@
 package com.devjob.devjobtrackerbackend.model;
 
-import java.time.ZonedDateTime;
+import java.time.LocalDateTime;
+
 
 public class JobApplicationData {
 
@@ -26,11 +27,11 @@ public class JobApplicationData {
     private String jobName;
     private String companyName;
     private String jobLink;
-    private ZonedDateTime appliedDate;
+    private LocalDateTime appliedDate;
     private AppStatus appStatus;
 
 
-    public JobApplicationData(String jobName, String companyName, String jobLink, ZonedDateTime appliedDate, AppStatus appStatus) {
+    public JobApplicationData(String jobName, String companyName, String jobLink, LocalDateTime appliedDate, AppStatus appStatus) {
         this.jobName = jobName;
         this.companyName = companyName;
         this.jobLink = jobLink;
@@ -74,11 +75,11 @@ public class JobApplicationData {
         this.jobLink = jobLink;
     }
 
-    public ZonedDateTime getAppliedDate() {
+    public LocalDateTime getAppliedDate() {
         return appliedDate;
     }
 
-    public void setAppliedDate(ZonedDateTime appliedDate) {
+    public void setAppliedDate(LocalDateTime appliedDate) {
         this.appliedDate = appliedDate;
     }
 

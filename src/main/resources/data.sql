@@ -1,1 +1,1 @@
-INSERT INTO job_data VALUES (4, 'Engineer', 'Company', 'www.link', current_date, 'AWAITING_RESPONSE');
+4

@@ -12,7 +12,7 @@ public interface JobDataDAO {
 
     void create(JobApplicationData job);
 
-    void update(int id, JobApplicationData.AppStatus status);
+    void update(JobApplicationData job);
 
     void delete (int id);
 

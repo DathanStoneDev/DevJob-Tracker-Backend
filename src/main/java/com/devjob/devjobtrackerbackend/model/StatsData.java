@@ -16,6 +16,9 @@ public class StatsData {
         this.offerCount = offerCount;
     }
 
+    public StatsData() {
+    }
+
     public int getTotalJobs() {
         return totalJobs;
     }

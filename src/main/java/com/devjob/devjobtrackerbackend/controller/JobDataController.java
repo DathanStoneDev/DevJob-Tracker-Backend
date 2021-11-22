@@ -8,23 +8,23 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1")
+@RequestMapping("/api/v1/jobs")
 @CrossOrigin
 public class JobDataController {
 
     @Autowired
     JobDataDAO jobDataDAO;
 
-    @GetMapping("/jobs")
-    public List<JobApplicationData> getAllJobs(){
-        return jobDataDAO.list();
+    @GetMapping("/")
+    public ResponseEntity<List<JobApplicationData>> getAllJobs(){
+        List<JobApplicationData> jobs = jobDataDAO.list();
+        return new ResponseEntity<>(jobs, HttpStatus.ACCEPTED);
     }
 
-    @GetMapping("/jobs/{jobId}")
+    @GetMapping("/{jobId}")
     public ResponseEntity<JobApplicationData> getJob(@PathVariable ("jobId") int id) {
         try {
             JobApplicationData job = jobDataDAO.getJob(id);
@@ -34,17 +34,17 @@ public class JobDataController {
         }
     }
 
-    @PostMapping("/jobs/add-job")
+    @PostMapping("/add-job")
     public void addJob(@RequestBody JobApplicationData job) {
         jobDataDAO.create(job);
     }
 
-    @PutMapping("/jobs/update-status")
+    @PutMapping("/update-status")
     public void updateJob(@RequestBody JobApplicationData job) {
         jobDataDAO.update(job);
     }
 
-    @DeleteMapping("/jobs/delete/{jobId}")
+    @DeleteMapping("/delete/{jobId}")
     public void deleteJob(@PathVariable int jobId) {
         jobDataDAO.delete(jobId);
     }
